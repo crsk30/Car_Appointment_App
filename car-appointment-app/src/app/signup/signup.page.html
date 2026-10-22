@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="signup-page" fullscreen>
+  <div class="auth-shell">
+    <div class="header-copy">
+      <p class="eyebrow">Join now</p>
+      <h2>Set up your account in a minute.</h2>
+    </div>
+
+    <div class="form-card">
+      <ion-item lines="none">
+        <ion-label position="stacked">Full name</ion-label>
+        <ion-input type="text" placeholder="Alex Johnson" value="Alex Johnson"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Phone</ion-label>
+        <ion-input type="tel" placeholder="+1 234 567 890" value="+1 234 567 890"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" placeholder="you@example.com" value="alex@carcare.com"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" placeholder="Create a strong password" value="password123"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" shape="round" routerLink="/home">Create account</ion-button>
+    </div>
+
+    <p class="bottom-text">
+      Already have an account?
+      <a routerLink="/login">Sign in</a>
+    </p>
+  </div>
+</ion-content>

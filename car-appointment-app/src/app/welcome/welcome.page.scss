@@ -1,0 +1,109 @@
+.welcome-page {
+  --background: linear-gradient(180deg, #f5f7ff 0%, #eef4ff 100%);
+}
+
+.welcome-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 22px 40px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1b2a41;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.brand-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1f6fff, #38bdf8);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(125, 148, 189, 0.2);
+  border-radius: 28px;
+  padding: 24px 20px;
+  box-shadow: 0 14px 40px rgba(31, 111, 255, 0.12);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #3a6dd8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-card h1 {
+  margin: 0;
+  color: #112236;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.subtitle {
+  margin: 16px 0 0;
+  color: #55708d;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.feature-list {
+  margin-top: 28px;
+  display: grid;
+  gap: 12px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  color: #1a2d45;
+  font-weight: 600;
+}
+
+.icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e6f5eb;
+  color: #1ea861;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+
+.cta-stack {
+  margin-top: 30px;
+  display: grid;
+  gap: 12px;
+}
+
+ion-button {
+  --border-radius: 18px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-weight: 700;
+}
+
+ion-button[fill='outline'] {
+  --border-color: rgba(62, 109, 221, 0.35);
+  --color: #204ea5;
+}
