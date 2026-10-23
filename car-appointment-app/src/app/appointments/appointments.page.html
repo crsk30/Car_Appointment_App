@@ -1,0 +1,50 @@
+<ion-content class="appointments-page" fullscreen>
+  <div class="page-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Appointments</p>
+        <h1>Schedule</h1>
+      </div>
+      <button class="filter-btn" type="button">Filter</button>
+    </header>
+
+    <div class="summary-card">
+      <div>
+        <span class="summary-label">Next service</span>
+        <h2>Fri, 10:30 AM</h2>
+      </div>
+      <div class="status-pill">Confirmed</div>
+    </div>
+
+    <div class="calendar-card">
+      <div class="calendar-label">This week</div>
+      <div class="date-row">
+        <span class="day">Mon</span>
+        <span class="day active">Tue</span>
+        <span class="day">Wed</span>
+        <span class="day">Thu</span>
+        <span class="day">Fri</span>
+      </div>
+    </div>
+
+    <div class="list-wrap">
+      <ion-card *ngFor="let item of appointments" class="appointment-card">
+        <ion-card-content>
+          <div class="row">
+            <div class="service-meta">
+              <div class="service-icon">🔧</div>
+              <div>
+                <span class="service-time">{{ item.time }}</span>
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.date }}</p>
+              </div>
+            </div>
+            <ion-chip [color]="item.color">{{ item.status }}</ion-chip>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <ion-button expand="block" shape="round" routerLink="/booking">New appointment</ion-button>
+  </div>
+</ion-content>

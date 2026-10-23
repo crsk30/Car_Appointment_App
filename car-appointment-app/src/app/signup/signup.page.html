@@ -7,37 +7,33 @@
 <ion-content class="signup-page" fullscreen>
   <div class="auth-shell">
     <div class="header-copy">
-      <p class="eyebrow">Join now</p>
-      <h2>Set up your account in a minute.</h2>
+      <p class="eyebrow">Join us</p>
+      <h2>Sign up with Google to book your service faster.</h2>
     </div>
 
-    <div class="form-card">
-      <ion-item lines="none">
-        <ion-label position="stacked">Full name</ion-label>
-        <ion-input type="text" placeholder="Alex Johnson" value="Alex Johnson"></ion-input>
-      </ion-item>
+    <div class="auth-card">
+      <div class="brand-row">
+        <div class="google-badge">G</div>
+        <span>One tap access</span>
+      </div>
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Phone</ion-label>
-        <ion-input type="tel" placeholder="+1 234 567 890" value="+1 234 567 890"></ion-input>
-      </ion-item>
+      <ion-button expand="block" shape="round" class="google-btn" routerLink="/home">
+        <span class="button-content">
+          <span class="g-icon">G</span>
+          <span>Sign up with Google</span>
+        </span>
+      </ion-button>
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input type="email" placeholder="you@example.com" value="alex@carcare.com"></ion-input>
-      </ion-item>
+      <div class="divider"><span>or</span></div>
 
-      <ion-item lines="none">
-        <ion-label position="stacked">Password</ion-label>
-        <ion-input type="password" placeholder="Create a strong password" value="password123"></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" shape="round" routerLink="/home">Create account</ion-button>
+      <ion-button expand="block" fill="outline" shape="round" routerLink="/login">
+        I already have an account
+      </ion-button>
     </div>
 
     <p class="bottom-text">
       Already have an account?
-      <a routerLink="/login">Sign in</a>
+      <a routerLink="/login">Log in</a>
     </p>
   </div>
 </ion-content>

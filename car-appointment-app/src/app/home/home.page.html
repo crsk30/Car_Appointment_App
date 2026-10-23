@@ -1,20 +1,116 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="home-page" fullscreen>
+  <div class="phone-shell">
+    <div class="status-row">
+      <span>9:41</span>
+      <div class="status-icons">
+        <span class="signal"></span>
+        <span class="wifi"></span>
+        <span class="battery"></span>
+      </div>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <div class="brand-icon">🛠</div>
+        <div class="brand-name">pistop.</div>
+      </div>
+      <div class="profile-badge">JL</div>
+    </header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="title-block">
+      <h1>Good morning, Jamie.</h1>
+      <p>A little care. A lot more miles.</p>
+    </div>
+
+    <section class="vehicle-card">
+      <div class="vehicle-header">
+        <span>YOUR VEHICLE • 2021</span>
+        <span class="chevron">⌄</span>
+      </div>
+
+      <h2>Toyota RAV4</h2>
+
+      <div class="car-stage" aria-hidden="true">
+        <svg viewBox="0 0 800 250" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="carBodyGlow" x1="0%" x2="100%" y1="0%" y2="0%">
+              <stop offset="0%" stop-color="#dfe8f2" />
+              <stop offset="50%" stop-color="#dee3e7" />
+              <stop offset="100%" stop-color="#bfc9d1" />
+            </linearGradient>
+          </defs>
+          <g>
+            <ellipse cx="360" cy="220" rx="270" ry="18" fill="rgba(0,0,0,0.22)"/>
+            <path d="M120 182 L188 126 C208 108 236 100 272 100 H470 C510 100 546 110 568 130 L640 176 C670 196 676 200 690 205 L710 213 L700 220 H98 L104 212 C110 206 115 194 120 182 Z" fill="url(#carBodyGlow)"/>
+            <path d="M210 136 L278 110 L378 106 L498 118 L552 136 L588 175 H175 L210 136 Z" fill="rgba(255,255,255,0.18)"/>
+            <circle cx="246" cy="204" r="33" fill="#22282d"/>
+            <circle cx="246" cy="204" r="14" fill="#7a7f84"/>
+            <circle cx="560" cy="204" r="33" fill="#22282d"/>
+            <circle cx="560" cy="204" r="14" fill="#7a7f84"/>
+            <path d="M226 120 L258 118 L294 96 L476 96 L528 120" fill="none" stroke="rgba(0,0,0,0.2)" stroke-width="3"/>
+            <path d="M226 120 L194 136" stroke="rgba(60,60,60,0.5)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M560 122 L594 138" stroke="rgba(60,60,60,0.5)" stroke-width="6" stroke-linecap="round"/>
+            <rect x="474" y="124" width="38" height="18" rx="5" fill="rgba(255,255,255,0.15)"/>
+            <rect x="356" y="122" width="64" height="16" rx="5" fill="rgba(255,255,255,0.15)"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="label">ODOMETER</span>
+          <strong>42,580 mi</strong>
+        </div>
+        <div class="stat-item right">
+          <span class="label">LICENSE PLATE</span>
+          <strong>8LXR294</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="maintenance-box">
+      <div class="maintenance-header">
+        <h3>Time for a little upkeep</h3>
+        <span class="chip">DUE SOON</span>
+      </div>
+      <p>Keep your RAV4 running smoothly with an oil change and tire rotation at 45,000 miles.</p>
+      <button class="primary-btn" type="button" routerLink="/booking">
+        <span>Book maintenance</span>
+        <span class="arrow">→</span>
+      </button>
+    </section>
+
+    <div class="quick-links">
+      <div class="mini-card">
+        <div class="mini-icon">◔</div>
+        <div>
+          <h4>Service history</h4>
+          <p>Last visit • Apr 14</p>
+        </div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-icon">☰</div>
+        <div>
+          <h4>Vehicle details</h4>
+          <p>Your car, at a glance</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <div class="nav-item active">
+        <span class="nav-icon">⌂</span>
+        <span>Home</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">🗓</span>
+        <span>Bookings</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">🚗</span>
+        <span>My garage</span>
+      </div>
+    </nav>
   </div>
 </ion-content>
+

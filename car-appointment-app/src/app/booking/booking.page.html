@@ -1,0 +1,301 @@
+<ion-content class="booking-page" fullscreen>
+  <div class="booking-shell">
+    <div class="phone-frame">
+      <div class="status-row">
+        <span>9:41</span>
+        <div class="status-icons">
+          <span class="signal"></span>
+          <span class="wifi"></span>
+          <span class="battery"></span>
+        </div>
+      </div>
+
+      <div class="topbar-row">
+        <button type="button" class="nav-button" aria-label="Go back">←</button>
+        <span class="top-title">Book a service</span>
+        <button type="button" class="help-button">Help</button>
+      </div>
+
+      <div class="step-tabs">
+        <span class="tab active">Service</span>
+        <span class="tab">Center</span>
+        <span class="tab">Time</span>
+        <span class="tab">Review</span>
+      </div>
+
+      <ng-container *ngIf="currentStep === 0">
+        <h2 class="headline">What needs a little care?</h2>
+        <p class="subcopy">Choose the services that work for your car.</p>
+
+        <div class="vehicle-card" role="listitem">
+          <div class="vehicle-icon">🚘</div>
+          <div class="vehicle-details">
+            <div class="vehicle-name">2021 Toyota RAV4</div>
+            <div class="vehicle-meta">BLXR294 • 42,580 mi</div>
+          </div>
+          <div class="vehicle-tag">MY VEHICLE</div>
+        </div>
+
+        <div class="services-panel">
+          <div class="section-header">
+            <span>ROUTINE MAINTENANCE</span>
+            <button type="button" class="section-button">Select multiple</button>
+          </div>
+
+          <div class="service-list">
+            <button
+              type="button"
+              class="service-item"
+              [class.selected]="selectedServiceIds.has(service.id)"
+              *ngFor="let service of services"
+              (click)="toggleService(service.id)"
+            >
+              <span class="service-check">
+                <span class="service-checkmark" [class.checked]="selectedServiceIds.has(service.id)">✓</span>
+              </span>
+
+              <span class="service-copy">
+                <span class="service-title">{{ service.title }}</span>
+                <span class="service-description">{{ service.description }}</span>
+                <span class="service-meta">{{ service.price | currency:'USD':'symbol':'1.2-2' }} · {{ service.duration }} min</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="helper-note">Optional prices. No work without your approval.</div>
+
+        <div class="bottom-summary">
+          <div class="selection-meta">
+            <span>{{ selectedCount }} {{ selectedCount === 1 ? 'service' : 'services' }} selected</span>
+            <strong>{{ subtotal | currency:'USD':'symbol':'1.2-2' }}</strong>
+          </div>
+          <button type="button" class="primary-btn" (click)="findServiceCenter()">
+            <span>Find a service center</span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 1">
+        <h2 class="headline">Choose a service center</h2>
+        <p class="subcopy">Trusted local centers near you.</p>
+
+        <div class="center-list">
+          <button
+            type="button"
+            class="center-item"
+            *ngFor="let center of centers"
+            (click)="chooseCenter(center)"
+          >
+            <div class="center-icon">🛠</div>
+            <div class="center-copy">
+              <div class="center-topline">
+                <strong>{{ center.name }}</strong>
+                <span class="center-badge">{{ center.badge }}</span>
+              </div>
+              <div class="center-meta-row">
+                <span>{{ center.distance }}</span>
+                <span>{{ center.rating }}</span>
+              </div>
+              <div class="center-price-row">
+                <span>From</span>
+                <strong>{{ center.price }}</strong>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <div class="selected-center-summary">
+          <span>Selected center</span>
+          <strong>{{ selectedCenter.name }}</strong>
+        </div>
+
+        <button type="button" class="primary-btn" (click)="continueToTimeSelection()">
+          <span>Continue</span>
+          <span class="arrow">→</span>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 2">
+        <h2 class="headline">Make time for your car.</h2>
+        <p class="subcopy">Find a time that fits your day.</p>
+
+        <div class="selected-center-box">
+          <div class="service-badge">{{ selectedCenter.name }}</div>
+          <span>{{ selectedCount }} services · {{ totalMinutes }} minute appointment</span>
+          <button type="button" class="mini-action" (click)="currentStep = 1">Change</button>
+        </div>
+
+        <div class="calendar-head">
+          <span>October 2026</span>
+          <div class="calendar-arrows"><span>‹</span><span>›</span></div>
+        </div>
+
+        <div class="calendar-grid">
+          <span class="calendar-day-header">M</span>
+          <span class="calendar-day-header">T</span>
+          <span class="calendar-day-header">W</span>
+          <span class="calendar-day-header">T</span>
+          <span class="calendar-day-header">F</span>
+          <span class="calendar-day-header">S</span>
+          <span class="calendar-day-header">S</span>
+
+          <span *ngFor="let day of dates" class="calendar-day" [class.selected-day]="day.isSelected" (click)="selectDate(day.value)">
+            {{ day.label }}
+          </span>
+        </div>
+
+        <div class="slot-day-row">
+          <span class="slot-day">{{ selectedDate }}</span>
+          <span class="slot-day muted-right">Pacific time</span>
+        </div>
+
+        <div class="time-grid">
+          <button *ngFor="let time of timeSlots" type="button" class="time-slot" [class.active-time]="time === selectedTime" (click)="selectTime(time)">
+            {{ time }}
+          </button>
+        </div>
+
+        <div class="reminder-note">
+          <span class="clock-icon">◔</span>
+          <span>Please arrive 10 minutes before your appointment.</span>
+        </div>
+
+        <div class="bottom-booking-row">
+          <div class="summary-block">
+            <span>{{ selectedCenter.name }}</span>
+            <strong>{{ selectedDate }}</strong>
+            <small>{{ selectedTime }}</small>
+          </div>
+          <button type="button" class="secondary-btn" (click)="reviewBooking()">Review booking</button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 3">
+        <div class="topbar-row review-nav">
+          <button type="button" class="nav-button" aria-label="Go back" (click)="currentStep = 2">←</button>
+          <span class="top-title">Book a service</span>
+          <button type="button" class="help-button">Help</button>
+        </div>
+
+        <div class="step-tabs">
+          <span class="tab">Service</span>
+          <span class="tab">Center</span>
+          <span class="tab">Time</span>
+          <span class="tab active">Review</span>
+        </div>
+
+        <h2 class="headline review-headline">All set? Let’s review.</h2>
+        <p class="subcopy">One last look before we save your spot.</p>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div>
+              <div class="review-title">2021 Toyota RAV4</div>
+              <div class="review-sub">BLXR294 • 42,580 mi</div>
+            </div>
+            <button class="mini-action" type="button">Edit</button>
+          </div>
+
+          <div class="review-line">
+            <span class="review-label">Location</span>
+            <span class="review-value">{{ selectedCenter.name }}</span>
+          </div>
+
+          <div class="review-line">
+            <span class="review-label">Date</span>
+            <span class="review-value">{{ selectedDate }}</span>
+          </div>
+
+          <div class="review-line">
+            <span class="review-label">Time</span>
+            <span class="review-value">{{ selectedTime }} · Pacific time</span>
+          </div>
+        </div>
+
+        <div class="maintenance-box">
+          <div class="maintenance-title-row">
+            <span>Your maintenance</span>
+            <button type="button" class="mini-action">Edit</button>
+          </div>
+
+          <div class="maintenance-item" *ngFor="let service of selectedServices">
+            <span>{{ service.title }}</span>
+            <strong>{{ service.price | currency:'USD':'symbol':'1.2-2' }}</strong>
+          </div>
+
+          <div class="maintenance-total">
+            <span>Total</span>
+            <strong>{{ subtotal | currency:'USD':'symbol':'1.2-2' }}</strong>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" checked />
+          <span>Book now. Pay after your service.</span>
+        </div>
+
+        <div class="two-button-row">
+          <button type="button" class="ghost-btn">Pay at the service center</button>
+          <button type="button" class="primary-btn compact" (click)="confirmAppointment()">Confirm appointment</button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentStep === 4">
+        <div class="confirmation-header">
+          <span class="brand-name">pitstop.</span>
+          <button type="button" class="done-pill">Done</button>
+        </div>
+
+        <div class="confirmation-badge">✓ APPOINTMENT CONFIRMED</div>
+
+        <h2 class="headline confirm-headline">You’re booked, Jamie.</h2>
+        <p class="subcopy">We’ll take care of your car. You take care on the day.</p>
+
+        <div class="info-panel">
+          <div class="date-card">
+            <span class="date-label">Mon, Tuesday</span>
+            <div class="date-number">26</div>
+            <div class="date-time">9:30–10:30 AM</div>
+          </div>
+
+          <div class="location-row">
+            <div class="mini-pin">◉</div>
+            <div>
+              <strong>{{ selectedCenter.name }}</strong>
+              <span>1450 Bush St, San Francisco, CA</span>
+            </div>
+          </div>
+
+          <div class="summary-table">
+            <div class="total-row">
+              <span>2021 Toyota RAV4 • 8LXR294</span>
+              <span>Oil &amp; filter change + tire rotation</span>
+            </div>
+            <div class="price-row">
+              <span>Pay at the center • taxes included</span>
+              <strong>{{ subtotal | currency:'USD':'symbol':'1.2-2' }}</strong>
+            </div>
+          </div>
+
+          <div class="reference-row">
+            <span>Booking reference</span>
+            <strong>PS-1026-482</strong>
+          </div>
+
+          <button type="button" class="calendar-button">Add to calendar</button>
+          <div class="assistant-copy">Arrive 10 minutes early and bring your keys. A confirmation has been sent to jamie.lee@gmail.com.</div>
+        </div>
+
+        <div class="final-actions">
+          <button type="button" class="primary-btn compact">Get directions</button>
+          <div class="secondary-actions">
+            <button type="button" class="tiny-btn">Reschedule</button>
+            <button type="button" class="tiny-btn">Cancel booking</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

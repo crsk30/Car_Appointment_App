@@ -1,0 +1,49 @@
+<ion-content class="profile-page" fullscreen>
+  <div class="page-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Profile</p>
+        <h1>Account</h1>
+      </div>
+      <button class="edit-btn" type="button">Edit</button>
+    </header>
+
+    <section class="profile-header">
+      <div class="avatar">AJ</div>
+      <div class="profile-meta">
+        <h3>Alex Johnson</h3>
+        <p>Premium member</p>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <div class="stat-box">
+        <strong>12</strong>
+        <span>Visits</span>
+      </div>
+      <div class="stat-box">
+        <strong>4.9</strong>
+        <span>Rating</span>
+      </div>
+      <div class="stat-box">
+        <strong>2</strong>
+        <span>Cars</span>
+      </div>
+    </section>
+
+    <ion-list class="profile-list">
+      <ion-item button="true" *ngFor="let item of profileItems">
+        <ion-label>
+          <div class="menu-row">
+            <span>{{ item }}</span>
+            <span class="arrow">›</span>
+          </div>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <div class="cta-row">
+      <ion-button expand="block" color="medium" routerLink="/welcome">Log out</ion-button>
+    </div>
+  </div>
+</ion-content>
